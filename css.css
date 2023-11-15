@@ -1,0 +1,469 @@
+@font-face {
+	font-family: "kimberleyblack";
+	src: url("kimberley/kimberley_bl-webfont.woff") format("woff");
+	font-style: normal;
+	font-stretch: normal;
+	font-weight: 250 900;
+	color: white;
+}
+
+
+@font-face {
+	font-family: "corporate";
+	src: url("Corporate-S-Regular.woff")format("woff");
+	font-style: normal;
+	font-stretch: normal;
+	font-weight: 250 900;
+
+}
+
+div {
+	display: grid;
+	grid-template-columns: minmax(1em, auto) 1fr minmax(1em, auto);
+}
+
+section {
+	display: grid;
+	grid-template-columns: minmax(1em, auto) 1fr minmax(1em, auto);
+}
+
+main section.content {
+	--fold: 35;
+	/* hoe breed mag een paragraaf zijn */
+	--ratio: 1.414;
+
+}
+
+main {
+	/* Je kan variabelen gebruiken. Handig! */
+	background-color: white;
+
+}
+
+
+
+
+/* RESET */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-size: 1.4rem;
+	background-color: var(--page-background);
+	color: var(--body-color);
+}
+
+/* LAYOUT */
+
+:where(.content, figcaption)>* {
+	/* je kan ook rekenen met CSS. 
+	Hier doen we de fold x de standaard fontgrootte */
+	max-width: calc(var(--fold) * 1rem);
+	width: 100%;
+	margin: 0 auto 1rem;
+	grid-column-start: 2;
+	padding-bottom: 1em;
+}
+
+:where(main)>* {
+	/* je kan ook rekenen met CSS. 
+	Hier doen we de fold x de standaard fontgrootte */
+	width: 100%;
+	grid-column-start: 2;
+
+}
+
+
+/* changing attr */
+
+div p {
+	font-family: "corporate";
+	color: white;
+
+}
+
+section p {
+	font-family: "corporate";
+	color: white;
+
+}
+
+cite {
+	text-align: center;
+	font-family: "corporate";
+	font-weight: 400;
+	color: hsl(31, 100%, 41%);
+}
+
+section:nth-of-type(3),
+section:nth-of-type(5),
+section:nth-of-type(4) {
+	background-color: white;
+}
+section:nth-of-type(5) p,
+section:nth-of-type(3) p,
+section:nth-of-type(4) p {
+	color: hsl(31, 100%, 41%);
+}
+
+.flaneerbrigade:first-of-type,
+.content {
+	background-color: hsl(31, 100%, 41%);
+}
+
+section:last-of-type {
+	padding-bottom: 4em;
+}
+
+/* vaste waarden h1 h2  */
+h1 {
+	/* 
+	vw = viewport width: 
+	grootte is afhankelijk van de breedte van het scherm.
+	vh = viewport height.
+	vmin = viewport height, óf width, degene die kleiner is.
+	vmax = dat kan je zelf bedenken
+		font-size: clamp(2em,10vw,15em);
+	clamp() heeft drie waardes:
+	1. niet kleiner dan
+	2. idealiter
+	3. maximale grootte
+	 */
+	overflow: hidden;
+	text-transform: uppercase;
+	font-family: "kimberleyblack";
+	line-height: 1;
+	/* lager cijfer als het font groter is. */
+	color: var(--highlight-color);
+	margin-top: 0.5em;
+	grid-column-start: 1;
+	grid-column-end: -1;
+	display: flex;
+	justify-content: center;
+	font-size: clamp(3em, 7vw, 15em);
+	animation: zoomup 2s ease-in;
+	display: inline-block;
+	animation-delay: calc(200ms * var(--i));
+	color: white;
+}
+
+
+h2 {
+	font-family: "kimberleyblack";
+	font-size: clamp(2em, 5vw, 15em);
+	line-height: 1;
+	color: var(--highlight-color);
+	grid-column-start: 1;
+	grid-column-end: -1;
+	display: flex;
+	justify-content: center;
+	padding-top: 0.5em;
+	transition: 1s all ease;
+	padding-bottom: 0em;
+}
+
+.invisible {
+	display: none;
+}
+
+h2:nth-of-type(1) {
+	color: hsl(31, 100%, 41%);
+	text-align: center;
+	padding-bottom:0.5em;
+}
+
+h2.orange {
+	color: white;
+}
+
+h2:hover {
+	font-size: clamp(2em, 7vw, 15em);
+}
+
+.content:last-of-type > h2 {
+	color: white;
+}
+
+
+
+.flaneerbrigade {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* h1 anim, eerste anim*/
+.text {
+	font-family: "kimberleyblack";
+
+	width: 100%;
+	padding-top: 1em;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.text H1 {
+	text-transform: uppercase;
+	animation: zoomup 2s ease-in;
+	display: inline-block;
+	animation-delay: calc(200ms * var(--i));
+	color: white;
+
+}
+
+@keyframes zoomup {
+
+	100%,
+	50% {
+		transform: scale(1);
+	}
+
+	0% {
+		transform: scale(1.2) translateY(-50px);
+		filter: blur(1px);
+		opacity: 0;
+	}
+}
+
+/* iconen schommel anim*/
+.images {
+	display: grid;
+	overflow: hidden;
+
+}
+img:nth-of-type(2),
+img:nth-of-type(3),
+img:nth-of-type(4),
+img:nth-of-type(5) {
+	animation-name: border;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	width: 15em;
+
+}
+
+img:first-of-type {
+	animation-name: border;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+
+}
+
+
+@keyframes border {
+	0% {
+		border-radius: 10%;
+
+		rotate: 2deg;
+		translate: 0 1em;
+
+
+
+	}
+
+	100% {
+		border-radius: 15%;
+		translate: 0 -1em;
+		rotate: 2deg;
+
+
+	}
+}
+
+.images img {
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	width: 8em;
+	animation-name: schommel;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+
+}
+
+@media (max-width:900px) {
+	.images {
+
+		display: grid;
+		grid-template-columns: 90%;
+		width: 8em;
+		animation-name: schommel;
+		animation-duration: 5s;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+
+	}
+}
+
+@keyframes schommel {
+	0% {
+		rotate: 2deg;
+		translate: 0 1em;
+	}
+
+	100% {
+		translate: 0 -1em;
+		rotate: -1deg;
+	}
+}
+
+.images img {
+	animation-delay: -1s;
+	animation-duration: 2s;
+
+
+
+	/* laatste anim*/
+}
+
+span {
+	font-family: "kimberleyblack";
+	padding: 0.2em;
+	color: white;
+	max-width: 100%;
+	animation-name: anim;
+	animation-duration: 7s;
+	animation-iteration-count: infinite;
+
+}
+
+.anim {
+
+	display: grid;
+	font-size: clamp(2em, 5vw, 15em);
+	justify-items: center;
+
+
+
+}
+
+
+@keyframes anim {
+
+	0% {
+		transform: translateZ(0%)
+	}
+
+	25% {
+
+		transform: translateX(20%);
+
+	}
+
+	50% {
+		transform: translateX(-20%);
+
+	}
+
+	75% {
+
+		transform: translateX(20%);
+
+	}
+
+	100% {
+
+		transform: translateX(0%);
+
+	}
+}
+
+/* tekst prompt einde*/
+.displaytekst {
+	font-family: "kimberleyblack";
+	display: flex;
+	justify-content: center;
+	font-size: 1.5em;
+}
+
+button {
+	background-color: white;
+	color: hsl(31, 100%, 41%);
+	border-color: hsl(31, 100%, 41%);
+	margin-top: 1em;
+	padding: 2em;
+	font-family: "kimberleyblack";
+	border-radius: 25px;
+
+
+
+}
+
+
+
+button:hover {
+	color: white;
+	background-color: hsl(31, 100%, 68%);
+	font-family: "corporate";
+
+}
+
+
+input {
+	font-size: 1em;
+	font-family: "corporate";
+	border-radius: 25px;
+	height: 3em;
+	width: 100%;
+	background-color: hsl(31, 100%, 90%);
+}
+
+.name {
+	display: flex;
+	justify-content: center;
+	font-family: "corporate";
+	flex-direction: column;
+}
+@media (min-width:900px) {
+	.name {
+		display: flex;
+		justify-content: center;
+		font-family: "corporate";
+		flex-direction: row;	}
+
+		button {
+			background-color: white;
+			color: hsl(31, 100%, 41%);
+			border-color: hsl(31, 100%, 41%);
+			margin-left: 1em;
+			width: 30%;
+			font-family: "kimberleyblack";
+			border-radius: 25px;
+			margin-top: 0px;
+		
+		
+		}
+
+		input {
+			font-size: 1em;
+			font-family: "corporate";
+			border-radius: 25px;
+			height: 3em;
+			width: 100%;
+			background-color: hsl(31, 100%, 90%);
+		}
+		
+}
+ul li{
+	list-style: none;
+	display: grid;
+	font-family: "corporate";
+	justify-items: center;
+}
+ul{
+	padding: 0em;
+}
+a{
+	color: white;
+
+}
